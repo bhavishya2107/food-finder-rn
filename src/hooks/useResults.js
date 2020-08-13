@@ -7,6 +7,11 @@ export default () => {
   const [loader, setLoader] = useState(false);
 
   const searchAPI = async (searchTerm) => {
+
+    if (searchTerm === "") {
+      return;
+    }
+
     setLoader(true);
     try {
       if (searchTerm === "") {
@@ -22,14 +27,7 @@ export default () => {
       setLoader(false);
       setResults(res.data.businesses);
     } catch (error) {
-      if (searchTerm === "") {
-        setErrorMessage("Please enter search query");
-        setTimeout(() => {
-          setErrorMessage("");
-        }, 5000);
-      } else {
-        setErrorMessage("Something went wrong");
-      }
+     setErrorMessage("Something went wrong");
     }
   };
 

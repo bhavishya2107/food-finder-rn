@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
 const Loader = () => (
   <View style={[styles.container, styles.horizontal]}>
@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
   },
   horizontal: {
     flexDirection: "row",
-    // justifyContent: "space-around",
     padding: 10,
   },
 });
