@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { withNavigation } from "react-navigation";
 import AppCard from "../components/AppCard";
 
 const ResultsList = ({ title, results, navigation }) => {
@@ -32,7 +33,7 @@ const ResultsList = ({ title, results, navigation }) => {
   );
 };
 
-export default ResultsList;
+export default withNavigation(ResultsList);
 
 const styles = StyleSheet.create({
   title: {
