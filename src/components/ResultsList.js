@@ -1,8 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import AppCard from "../components/AppCard";
 
-const ResultsList = ({ title, results }) => {
+const ResultsList = ({ title, results, navigation }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -13,7 +20,11 @@ const ResultsList = ({ title, results }) => {
           data={results}
           keyExtractor={(result) => result.id}
           renderItem={({ item }) => {
-            return <AppCard result={item} />;
+            return (
+              <TouchableOpacity onPress={() => navigation.navigate("FoodShow")}>
+                <AppCard result={item} />
+              </TouchableOpacity>
+            );
           }}
         />
       </View>

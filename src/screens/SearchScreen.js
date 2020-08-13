@@ -4,10 +4,11 @@ import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import Screen from "../components/Screen";
 import ResultsList from "../components/ResultsList";
+import Loader from "../components/Loader";
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
   const [term, setTerm] = useState("");
-  const [searchAPI, results, errorMessage] = useResults();
+  const [searchAPI, results, errorMessage, loader] = useResults();
 
   const filterResultsByPrice = (price) => {
     return results.filter((result) => {
@@ -24,17 +25,27 @@ const SearchScreen = () => {
       />
       {errorMessage ? <Text style={styles.text}>{errorMessage}</Text> : null}
 
-      {/* {results.length ? (
-          <Text>We have found {results.length} results</Text>
-        ) : null} */}
-      <ScrollView>
-        <ResultsList
-          results={filterResultsByPrice("$")}
-          title="Cost Effective"
-        />
-        <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
-        <ResultsList results={filterResultsByPrice("$$")} title="Big Spender" />
-      </ScrollView>
+      {loader ? (
+        <Loader />
+      ) : (
+        <ScrollView>
+          <ResultsList
+            results={filterResultsByPrice("$")}
+            title="Cost Effective"
+            navigation={navigation}
+          />
+          <ResultsList
+            results={filterResultsByPrice("$$")}
+            title="Bit Pricier"
+            navigation={navigation}
+          />
+          <ResultsList
+            results={filterResultsByPrice("$$")}
+            title="Big Spender"
+            navigation={navigation}
+          />
+        </ScrollView>
+      )}
     </Screen>
   );
 };
