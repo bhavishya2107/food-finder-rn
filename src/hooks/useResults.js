@@ -7,11 +7,16 @@ export default () => {
   const [loader, setLoader] = useState(false);
 
   const searchAPI = async (searchTerm) => {
+
     if (searchTerm === "") {
       return;
     }
+
     setLoader(true);
     try {
+      if (searchTerm === "") {
+        return <Text>enter search term</Text>;
+      }
       const res = await yelp.get("/search", {
         params: {
           limit: 50,
@@ -22,12 +27,12 @@ export default () => {
       setLoader(false);
       setResults(res.data.businesses);
     } catch (error) {
-      setErrorMessage("Something went wrong");
+     setErrorMessage("Something went wrong");
     }
   };
 
   useEffect(() => {
-    searchAPI("pasta");
+    searchAPI("food");
   }, []);
   return [searchAPI, results, errorMessage, loader];
 };
