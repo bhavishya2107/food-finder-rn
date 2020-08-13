@@ -6,7 +6,7 @@ import Screen from "../components/Screen";
 import ResultsList from "../components/ResultsList";
 import Loader from "../components/Loader";
 
-const SearchScreen = ({ navigation }) => {
+const SearchScreen = () => {
   const [term, setTerm] = useState("");
   const [searchAPI, results, errorMessage, loader] = useResults();
 
@@ -32,18 +32,18 @@ const SearchScreen = ({ navigation }) => {
           <ResultsList
             results={filterResultsByPrice("$")}
             title="Cost Effective"
-            navigation={navigation}
           />
           <ResultsList
             results={filterResultsByPrice("$$")}
             title="Bit Pricier"
-            navigation={navigation}
           />
           <ResultsList
-            results={filterResultsByPrice("$$")}
+            results={filterResultsByPrice("$$$")}
             title="Big Spender"
-            navigation={navigation}
-
+          />
+          <ResultsList
+            results={filterResultsByPrice("$$$$")}
+            title="Big Spender"
           />
         </ScrollView>
       )}
